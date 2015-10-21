@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-DOCKER_TAG="haproxytech/haproxy-ubuntu"
+DOCKER_TAG="haproxytech/haproxy-debian"
 
 HAPROXY_MINOR_OLD=$(awk '/^ENV HAPROXY_MINOR/ {print $NF}' Dockerfile)
 
