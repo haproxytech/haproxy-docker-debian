@@ -31,6 +31,7 @@ RUN apt-get update && \
                             all install-bin install-man && \
     ln -s /usr/local/sbin/haproxy /usr/sbin/haproxy && \
     mkdir -p /var/lib/haproxy && \
+    chown "$HAPROXY_UID:$HAPROXY_GID" /var/lib/haproxy && \
     rm -rf /tmp/haproxy && \
     apt-get purge -y --auto-remove gcc make libc6-dev libssl-dev libpcre3-dev zlib1g-dev && \
     apt-get clean
