@@ -17,7 +17,7 @@ ENV HAPROXY_UID haproxy
 ENV HAPROXY_GID haproxy
 
 RUN apt-get update && \
-    apt-get install -y libssl1.0.0 zlib1g libpcre3 tar curl socat && \
+    apt-get install -y libssl1.1 zlib1g libpcre3 tar curl socat && \
     apt-get install -y gcc make libc6-dev libssl-dev libpcre3-dev zlib1g-dev && \
     curl -sfSL "$HAPROXY_SRC_URL/$HAPROXY_BRANCH/src/haproxy-$HAPROXY_MINOR.tar.gz" -o haproxy.tar.gz && \
     echo "$HAPROXY_MD5  haproxy.tar.gz" | md5sum -c - && \
