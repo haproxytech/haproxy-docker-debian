@@ -1,37 +1,104 @@
-HAProxy Debian amd64 Dockerfile
-===============================
+# Supported tags and respective `Dockerfile` links
 
-This repository contains a **Dockerfile** for building a HAProxy image for amd64
-from base Debian Docker image. HAProxy is an open source TCP and HTTP
-load-balancer, HTTP reverse-proxy, reliable, fast and flexible.
+-	[`2.1-dev1`, `2.1`](https://github.com/haproxytech/haproxy-docker-debian/blob/master/2.1/Dockerfile)
+-	[`2.0.6`, `2.0`, `latest`](https://github.com/haproxytech/haproxy-docker-debian/blob/master/2.0/Dockerfile)
+-	[`1.9.10`, `1.9`](https://github.com/haproxytech/haproxy-docker-debian/blob/master/1.9/Dockerfile)
+-	[`1.8.21`, `1.8`](https://github.com/haproxytech/haproxy-docker-debian/blob/master/1.8/Dockerfile)
+-	[`1.7.11`, `1.7`](https://github.com/haproxytech/haproxy-docker-debian/blob/master/1.7/Dockerfile)
+-	[`1.6.14`, `1.6`](https://github.com/haproxytech/haproxy-docker-debian/blob/master/1.6/Dockerfile)
+-	[`1.5.19`, `1.5`](https://github.com/haproxytech/haproxy-docker-debian/blob/master/1.5/Dockerfile)
 
-Base Docker Image
------------------
+# Quick reference
 
-* debian
+-	**Where to get help**:  
+	[HAProxy mailing list](mailto:haproxy@formilux.org), [HAProxy Community Slack](https://slack.haproxy.org/) or [#haproxy on FreeNode](irc://chat.freenode.net:6697/haproxy)
 
-Installation
-------------
+-	**Where to file issues**:  
+	[https://github.com/haproxytech/haproxy-docker-debian/issues](https://github.com/haproxytech/haproxy-docker-debian/issues)
 
-1. Install [Docker](https://www.docker.com/)
-2. Download [haproxytech/haproxy-debian](https://registry.hub.docker.com/u/haproxytech/haproxy-debian/) image from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull haproxytech/haproxy-debian`
-3. Run it: `docker run -d -p 80:80 haproxytech/haproxy-debian`
+-	**Maintained by**:  
+	[HAProxy Technologies](https://github.com/haproxytech)
 
-General container help
-----------------------
+-	**Supported architectures**: ([more info](https://github.com/docker-library/official-images#architectures-other-than-amd64))  
+	[`amd64`](https://hub.docker.com/r/amd64/haproxy/)
 
-Run `docker run -ti THIS_IMAGE bash` to obtain interactive shell.
-Run `docker exec -ti CONTAINERID container-entrypoint` to access already running container.
+-	**Image updates**:  
+	[commits to `haproxytech/haproxy-docker-debian`](https://github.com/haproxytech/haproxy-docker-debian/commits/master), [top level `haproxytech/haproxy-docker-debian` image folder](https://github.com/haproxytech/haproxy-docker-debian)  
 
-To get more help on HAProxy, visit [www.haproxy.org](http://www.haproxy.org/). More detailed documentation
-is available at [www.haproxy.org/#docs](http://www.haproxy.org/#docs).
+-	**Source of this description**:  
+	[README.md](https://github.com/haproxytech/haproxy-docker-debian/blob/master/README.md)
 
-Product Description
--------------------
+# What is HAProxy?
 
-HAProxy is a free, very fast and reliable solution offering high availability,
-load balancing, and proxying for TCP and HTTP-based applications. It is
-particularly suited for very high traffic web sites and powers quite a number of
-the world's most visited ones. Over the years it has become the de-facto
-standard opensource load balancer, is now shipped with most mainstream Linux
-distributions, and is often deployed by default in cloud platforms. 
+HAProxy is the fastest and most widely used open-source load balancer and application delivery controller. Written in C, it has a reputation for efficient use of both processor and memory. It can proxy at either layer 4 (TCP) or layer 7 (HTTP) and has additional features for inspecting, routing and modifying HTTP messages.
+
+It comes bundled with a web UI, called the HAProxy Stats page, that you can use to monitor error rates, the volume of traffic and latency. Features can be toggled on by updating a single configuration file, which provides a syntax for defining routing rules, rate limiting, access controls, and more.
+
+Other features include:
+
+* SSL/TLS termination
+* Gzip compression
+* Health checking
+* HTTP/2
+* gRPC support
+* Lua scripting
+* DNS service discovery
+* Automatic retries of failed conenctions
+* Verbose logging
+
+![logo](https://www.haproxy.org/img/HAProxyCommunityEdition_60px.png)
+
+# How to use this image
+
+This image is being shipped with a trivial sample configuration and for any real life use it should be configured according to the [extensive documentation](https://cbonte.github.io/haproxy-dconv/) and [examples](https://github.com/haproxy/haproxy/tree/master/examples). We will now show how to override shipped haproxy.cfg with one of your own.
+
+## Create a `Dockerfile`
+
+```dockerfile
+FROM haproxytech/haproxy-debian:2.0
+COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+```
+
+## Build the container
+
+```console
+$ docker build -t my-haproxy .
+```
+
+## Test the configuration file
+
+```console
+$ docker run -it --rm my-haproxy haproxy -c -f /usr/local/etc/haproxy/haproxy.cfg
+```
+
+## Run the container
+
+```console
+$ docker run -d --name my-running-haproxy my-haproxy
+```
+
+You will also need to publish the ports your HAProxy is listening on to the host by specifying the `-p` option, for example `-p 8080:80` to publish port 8080 from the container host to port 80 in the container.
+
+## Directly via bind mount
+
+```console
+$ docker run -d --name my-running-haproxy -v /path/to/etc/haproxy:/usr/local/etc/haproxy:ro haproxytech/haproxy-debian:2.0
+```
+
+Note that your host's `/path/to/etc/haproxy` folder should be populated with a file named `haproxy.cfg` as well as any other accompanying files local to `/etc/haproxy`.
+
+### Reloading config
+
+To be able to reload HAProxy configuration, you can send `SIGHUP` to the container:
+
+```console
+$ docker kill -s HUP my-running-haproxy
+```
+
+To achieve seamless reloads it is required to use `expose-fd listeners` and socket transfers which are not enabled by default. More on this topic is in the blog post [Truly Seamless Reloads with HAProxy](https://www.haproxy.com/blog/truly-seamless-reloads-with-haproxy-no-more-hacks/).
+
+# License
+
+View [license information](https://raw.githubusercontent.com/haproxy/haproxy/master/LICENSE) for the software contained in this image.
+
+As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
