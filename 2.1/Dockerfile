@@ -37,6 +37,7 @@ COPY --from=builder /dataplaneapi /usr/local/bin/dataplaneapi
 RUN apt-get update && \
     apt-get install -y --no-install-recommends procps libssl1.1 zlib1g "libpcre2-*" liblua5.3-0 libatomic1 tar curl socat ca-certificates && \
     apt-get install -y --no-install-recommends gcc make libc6-dev libssl-dev libpcre2-dev zlib1g-dev liblua5.3-dev && \
+    c_rehash && \
     curl -sfSL "${LIBSLZ_URL}/v${LIBSLZ_MINOR}.tar.gz" -o libslz.tar.gz && \
     echo "$LIBSLZ_SHA256 *libslz.tar.gz" | sha256sum -c - && \
     mkdir -p /tmp/libslz && \
