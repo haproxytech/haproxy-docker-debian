@@ -1,7 +1,7 @@
 FROM debian:buster-slim AS opentracing
-ENV OPENTRACING_CPP_MINOR 1.5.0
+ENV OPENTRACING_CPP_MINOR 1.6.0
 ENV OPENTRACING_C_WRAPPER_MINOR 1.1.3
-ENV JAEGER_CLIENT_CPP_MINOR 0.5.0
+ENV JAEGER_CLIENT_CPP_MINOR 0.9.0
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     gcc \
