@@ -4,7 +4,7 @@
 -	[`2.7-dev10`, `2.7`, `latest`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.7/Dockerfile)
 -	[`2.6.12`, `2.6`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.6/Dockerfile)
 -	[`2.5.13`, `2.5`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.5/Dockerfile)
--	[`2.4.22`, `2.4`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.4/Dockerfile)
+-	[`2.4-dev19`, `2.4`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.4/Dockerfile)
 -	[`2.2.29`, `2.2`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.2/Dockerfile)
 -	[`2.0-dev7`, `2.0`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.0/Dockerfile)
 
