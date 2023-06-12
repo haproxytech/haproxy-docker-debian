@@ -7,7 +7,7 @@
 -	[`2.5.14`, `2.5`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.5/Dockerfile)
 -	[`2.4.23`, `2.4`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.4/Dockerfile)
 -	[`2.2.30`, `2.2`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.2/Dockerfile)
--	[`2.0.31`, `2.0`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.0/Dockerfile)
+-	[`2.0.32`, `2.0`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.0/Dockerfile)
 
 # Quick reference
 
