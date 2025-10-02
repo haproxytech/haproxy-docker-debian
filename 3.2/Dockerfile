@@ -13,7 +13,7 @@ RUN apk add --no-cache ca-certificates git make && \
     git checkout "v${DATAPLANE_V2_MINOR}" && \
     make build && cp build/dataplaneapi /dataplaneapi-v2
 
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 MAINTAINER Dinko Korunic <dkorunic@haproxy.com>
 
