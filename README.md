@@ -5,8 +5,8 @@
 -	[`3.3.13`, `s6-3.3.13`, `3.3`, `s6-3.3`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/3.3/Dockerfile)
 -	[`3.2.22`, `s6-3.2.22`, `3.2`, `s6-3.2`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/3.2/Dockerfile)
 -	[`3.0.26`, `s6-3.0.26`, `3.0`, `s6-3.0`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/3.0/Dockerfile)
--	[`2.8.26`, `s6-2.8.26`, `2.8`, `s6-2.8`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.8/Dockerfile)
--	[`2.6.31`, `s6-2.6.31`, `2.6`, `s6-2.6`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.6/Dockerfile)
+-	[`2.8.27`, `s6-2.8.27`, `2.8`, `s6-2.8`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.8/Dockerfile)
+-	[`2.6.32`, `s6-2.6.32`, `2.6`, `s6-2.6`](https://github.com/haproxytech/haproxy-docker-debian/blob/main/2.6/Dockerfile)
 
 # Quick reference
 
