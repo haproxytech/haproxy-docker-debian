@@ -46,7 +46,7 @@ RUN apt-get update && \
 
 FROM debian:trixie-slim
 
-MAINTAINER Dinko Korunic <dkorunic@haproxy.com>
+LABEL maintainer="Dinko Korunic <dkorunic@haproxy.com>"
 
 LABEL Name=HAProxy
 LABEL Release="Community Edition"
